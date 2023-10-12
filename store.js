@@ -16,7 +16,7 @@ const listOfItems = [];
 /**
  * Adding the additional item to the list of web project items
  */
-app.post("/api/listOfItems", (req, res) => {
+app.post("/api", (req, res) => {
   const newListItem = req.body;
   console.log(newListItem);
   listOfItems.push(newListItem);
@@ -26,10 +26,15 @@ app.post("/api/listOfItems", (req, res) => {
   });
 });
 
+// Getting web project items
+app.get("/api", (req, res) => {
+  res.json(listOfItems);
+});
+
 /**
  * Deleting an item from the web roject list using its id
  */
-app.delete("/api/listOfItems/:id", (req, res) => {
+app.delete("/api/:id", (req, res) => {
   const listId = req.params.id;
   listOfItems.splice(listId, 1);
   console.log(listOfItems);
@@ -41,7 +46,7 @@ app.delete("/api/listOfItems/:id", (req, res) => {
 /**
  * updating the title and description of an item on the list of web project items
  */
-app.put("/api/listOfItems/:id", (req, res) => {
+app.put("/api/:id", (req, res) => {
   const listId = req.params.id;
   const updatedListItem = req.body;
   listOfItems[listId] = updatedListItem;
