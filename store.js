@@ -5,13 +5,26 @@ const express = require("express");
 const app = express();
 
 // initializing the port to run the server
-const PORT = 3000;
+const PORT = 8080;
 
 // using middleware to parse JSON data
 app.use(express.json());
 
 // initializing a list variable to store a list of web project items
-const listOfItems = [];
+const listOfItems = [
+  {
+    id: 1,
+    title: "Online store",
+    description: "Online store created with HTML, CSS and Javascript.",
+    URL: "http://heroku/myapp/game/",
+  },
+  {
+    id: 2,
+    title: "React Game",
+    description: "Tic tac toe game created using Create React app.",
+    URL: "http://git.com/myrepos/shop/index",
+  },
+];
 
 /**
  * Adding the additional item to the list of web project items
@@ -32,7 +45,7 @@ app.get("/api", (req, res) => {
 });
 
 /**
- * Deleting an item from the web roject list using its id
+ * Deleting an item from the web project list using its id
  */
 app.delete("/api/:id", (req, res) => {
   const listId = req.params.id;
